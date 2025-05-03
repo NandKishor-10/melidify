@@ -51,12 +51,14 @@ function SearchScreen({ query, resetSearch }) {
           key={row}
           sx={{
             justifyContent: 'center',
-            // display: 'flex',
-            // flexWrap: 'nowrap',
-            // margin: "auto",
+            display: 'flex',
+            // height: '100vh',
+            flexWrap: 'nowrap',
+            margin: "auto",
             mb: 2,
-            px: 2,
-            // width: 'max-content'
+            px: 3,
+            // pl: 2,
+            width: 'max-content'
           }}
         >
           {songs.slice(row * 3, row * 3 + 3).map((song) => (
@@ -81,4 +83,4 @@ function SearchScreen({ query, resetSearch }) {
 }
 
 
-export default SearchScreen;
+export default SearchScreen

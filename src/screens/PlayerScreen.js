@@ -118,6 +118,7 @@ function PlayerScreen(isPlayingParam = true) {
 						? argbToHex(md3Colors.primaryContainer)
 						: lighten(argbToHex(md3Colors.primaryContainer), 0.5),
 					color: argbToHex(md3Colors.onPrimaryContainer),
+					boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.1)',
 					borderRadius: '1rem',
 				}}
 			>
