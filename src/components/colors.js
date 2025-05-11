@@ -1,7 +1,7 @@
 import { themeFromSourceColor } from '@material/material-color-utilities';
 
 
-const isDarkMode = false
+const isDarkMode = true
 const seedColorHex = '#80DEEA'
 
 function hexToArgb(hex) {

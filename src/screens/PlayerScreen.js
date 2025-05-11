@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { Box, darken, IconButton, lighten, Slider, Typography } from '@mui/material'
 import { argbToHex, isDarkMode, md3Colors } from '../components/colors'
 
-function PlayerScreen(isPlayingParam = true) {
+function PlayerScreen(isPlayingParam = false) {
 	const screenWidth = useScreenWidth()
 	const isMobile = screenWidth < 800
 	const audioRef = useRef(null)
@@ -19,7 +19,7 @@ function PlayerScreen(isPlayingParam = true) {
 	const totalDuration = song?.duration
 	const currentTime = (progress / 100) * totalDuration
 
-	// console.log(state)
+	// console.log("State: ", state)
 
 	const togglePlay = () => {
 		const audio = audioRef.current
@@ -44,6 +44,7 @@ function PlayerScreen(isPlayingParam = true) {
 	}, [])
 
 	useEffect(() => {
+		if (!isPlaying) return
 		const audio = audioRef.current
 		if (audio) {
 			audio.play()
@@ -109,7 +110,7 @@ function PlayerScreen(isPlayingParam = true) {
 			<div
 				style={{
 					width: isMobile ? '100%' : '64%',
-					height: isMobile ? '60vh' : '80vh',
+					height: isMobile ? '70vh' : '80vh',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
@@ -331,7 +332,7 @@ function PlayerScreen(isPlayingParam = true) {
 									'@media (hover: hover)': {
 										'&:hover': {
 											backgroundColor: lighten(argbToHex(md3Colors.secondaryContainer), 0.05),
-											transform: 'scale(1.15)',
+											transform: 'scale(1.1)',
 										}
 									},
 								}}

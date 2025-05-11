@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Box, darken, IconButton, lighten, TextField, Typography } from '@mui/material'
-import logoIcon from '../icons/logo_icon.png'
-import logoText from '../icons/logo_text.png'
+import logoIcon from '../assets/logo_icon.png'
+import logoText from '../assets/logo_text.png'
 import { HomeRounded, LibraryMusic, Person } from '@mui/icons-material'
 import { useScreenWidth, pageStore } from './utils'
 import { argbToHex, isDarkMode, md3Colors } from './colors'
@@ -171,7 +171,7 @@ function Header() {
               '& .MuiFilledInput-input': {
                 color: argbToHex(md3Colors.onPrimaryContainer),
                 padding: '16px 10px 10px',
-                paddingRight: '40px', // Make space for the hint
+                paddingRight: '40px',
               },
               '& .MuiInputLabel-root': {
                 color: darken(argbToHex(md3Colors.onPrimaryContainer), 0.3),
@@ -182,26 +182,27 @@ function Header() {
               },
             }}
           />
-          <Box
-            sx={{
-              position: 'absolute',
-              right: 12,
-              top: '50%',
-              transform: 'translateY(-75%)',
-              color: darken(argbToHex(md3Colors.onPrimaryContainer), 0.5),
-              fontSize: '0.8rem',
-              pointerEvents: 'none',
-              backgroundColor: isDarkMode
-                ? darken(argbToHex(md3Colors.primaryContainer), 0.05)
-                : lighten(argbToHex(md3Colors.primaryContainer), 0.05),
-              padding: '2px 6px',
-              borderRadius: '4px',
-            }}
-          >
-            S
-          </Box>
+          {!isMobile &&
+            <Box
+              sx={{
+                position: 'absolute',
+                right: 12,
+                top: '50%',
+                transform: 'translateY(-75%)',
+                color: darken(argbToHex(md3Colors.onPrimaryContainer), 0.5),
+                fontSize: '0.8rem',
+                pointerEvents: 'none',
+                backgroundColor: isDarkMode
+                  ? darken(argbToHex(md3Colors.primaryContainer), 0.05)
+                  : lighten(argbToHex(md3Colors.primaryContainer), 0.05),
+                padding: '2px 6px',
+                borderRadius: '4px',
+              }}
+            >
+              S
+            </Box>}
         </Box>
-        {isMobile ? null :
+        {!isMobile &&
           <span
             style={{
               display: 'flex',
@@ -309,11 +310,11 @@ function Header() {
           />
         </IconButton>
       </div>
-      {searchQuery ?
+      {searchQuery &&
         <SearchScreen
           query={searchQuery}
           resetSearch={resetSearch}
-        /> : null
+        />
       }
     </div>
   )
