@@ -1,45 +1,46 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Box, Typography, Button, Container, useMediaQuery, useTheme, Grow, Slide, IconButton, lighten, darken } from '@mui/material';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { keyframes } from '@emotion/react';
-import { argbToHex, isDarkMode, md3Colors } from '../components/colors';
-import logoIcon from '../assets/logo_icon.png';
+import React, { useRef, useState, useEffect } from 'react'
+import { Box, Typography, Button, Container, useMediaQuery, useTheme, Grow, Slide, IconButton, lighten, darken } from '@mui/material'
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
+import { keyframes } from '@emotion/react'
+import { argbToHex, isDarkMode, md3Colors } from '../components/colors'
+import logoIcon from '../assets/logo_icon.png'
 
-const MelidifyLanding = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [pop, setPop] = useState(false);
+const LandingScreen = () => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  // const { currentPage, setCurrentPage } = pageStore()
+  const audioRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [pop, setPop] = useState(false)
+  // setCurrentPage('landing')
 
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        audioRef.current.pause()
       } else {
-        audioRef.current.play();
+        audioRef.current.play()
       }
-      setIsPlaying(!isPlaying);
+      setIsPlaying(!isPlaying)
     }
-  };
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPop(true);
-      setTimeout(() => setPop(false), 300);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+      setPop(true)
+      setTimeout(() => setPop(false), 300)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   const popAnimation = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  `;
+    0% { transform: scale(1) }
+    50% { transform: scale(1.2) }
+    100% { transform: scale(1) }
+  `
 
   return (
     <Box sx={{
@@ -170,7 +171,7 @@ const MelidifyLanding = () => {
         </Box>
       </Container>
     </Box>
-  );
-};
+  )
+}
 
-export default MelidifyLanding;
+export default LandingScreen

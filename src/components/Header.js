@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
-import { Box, darken, IconButton, lighten, TextField, Typography } from '@mui/material'
+import { Box, darken, IconButton, lighten, TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import logoIcon from '../assets/logo_icon.png'
 import logoText from '../assets/logo_text.png'
 import { HomeRounded, LibraryMusic, Person } from '@mui/icons-material'
-import { useScreenWidth, pageStore } from './utils'
+import { pageStore } from './utils'
 import { argbToHex, isDarkMode, md3Colors } from './colors'
 import SearchScreen from '../screens/SearchScreen'
 import { useNavigate } from 'react-router-dom'
 
 
 function Header() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const [searchQuery, setSearchQuery] = useState('')
-  const screenWidth = useScreenWidth()
-  const isMobile = screenWidth < 700
   const navigate = useNavigate()
   const { currentPage, setCurrentPage } = pageStore()
   const inputRef = useRef(null)

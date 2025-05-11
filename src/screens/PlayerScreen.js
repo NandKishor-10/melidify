@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { formatTime, useScreenWidth } from '../components/utils'
+import { formatTime } from '../components/utils'
 import { SkipNext, SkipPrevious, PlayArrow, Pause, Shuffle, Repeat } from '@mui/icons-material'
 import { useLocation } from 'react-router-dom'
-import { Box, darken, IconButton, lighten, Slider, Typography } from '@mui/material'
+import { Box, darken, IconButton, lighten, Slider, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { argbToHex, isDarkMode, md3Colors } from '../components/colors'
 
 function PlayerScreen(isPlayingParam = false) {
-	const screenWidth = useScreenWidth()
-	const isMobile = screenWidth < 800
+	const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 	const audioRef = useRef(null)
 	const [isShuffleEnable, setIsShuffleEnable] = useState(false)
 	const [isRepeatEnable, setIsRepeatEnable] = useState(false)
