@@ -31,7 +31,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<LandingScreen />} />
-        <Route path='/search' element={<SearchScreen />} />
+        <Route path="/search" element={<SearchScreen />} />
         <Route path="/home" element={<Homescreen />} />
         <Route path="/player/:songId" element={<PlayerScreen isPlaying={true} />} />
         <Route path="/library" element={<LibraryScreen />} />

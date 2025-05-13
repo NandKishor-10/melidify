@@ -6,17 +6,16 @@ import { HomeRounded, LibraryMusic, Person } from '@mui/icons-material'
 import { pageStore } from './utils'
 import { argbToHex, isDarkMode, md3Colors } from './colors'
 import SearchScreen from '../screens/SearchScreen'
-import { useNavigate } from 'react-router-dom'
+import { useNavigation } from './Navigation'
 
 
 function Header() {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const [searchQuery, setSearchQuery] = useState('')
-  const navigate = useNavigate()
-  const { currentPage, setCurrentPage } = pageStore()
+  const { currentPage } = pageStore()
   const inputRef = useRef(null)
-
+  const { gotoHome, gotoLibrary, gotoSearch } = useNavigation()
   const resetSearch = () => setSearchQuery('')
 
   useEffect(() => {
@@ -31,51 +30,6 @@ function Header() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  const gotoHome = () => {
-    navigate('/home')
-    resetSearch()
-    setCurrentPage('home')
-    console.log('navigating to Home')
-  }
-
-  const gotoLibrary = () => {
-    navigate('/library')
-    resetSearch()
-    setCurrentPage('library')
-    console.log('navigating to Library')
-  }
-
-  const gotoSearch = () => {
-    setCurrentPage('search')
-    navigate('/search')
-    resetSearch()
-    console.log('navigating to Search')
-  }
-
-  // const fetchSearchResults = async (query) => {
-  //   if (!query) return
-  //   console.log(`Fetching data for: ${query}`)
-  //   const data = fetchSongs(query)
-  //   console.log(data)
-  // };
-
-  // const handleSearchChange = (e) => {
-  //   setSearchQuery(e.target.value)
-  //   fetchSongs(searchQuery).then(data => {
-  //     console.log('Fetched songs in Header:', data)
-  //     console.log(data)
-  //   })
-  //   console.log(fetchSongs(e.target.value))
-  //   fetchSearchResults(e.target.value)
-  // }
-
-  // const handleSearchSubmit = (e) => {
-  //   if (e.key === 'Enter' && searchQuery.trim()) {
-  //     navigate(`/?q=${encodeURIComponent(searchQuery.trim())}`);
-  //     setSearchQuery('');
-  //   }
-  // }
-
   return (
     <div
       style={{
@@ -89,7 +43,6 @@ function Header() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          // backgroundColor: lighten(argbToHex(md3Colors.primaryContainer), 0.2),
           backgroundColor: argbToHex(md3Colors.primaryContainer),
           color: argbToHex(md3Colors.onPrimaryContainer),
           boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.20)',
@@ -110,7 +63,7 @@ function Header() {
             src={logoIcon}
             height={60}
             alt='Logo'
-            onClick={gotoSearch}
+            onClick={() => gotoSearch(resetSearch)}
             style={{
               height: '50px',
               display: 'flex',
@@ -125,7 +78,7 @@ function Header() {
               src={logoText}
               height={60}
               alt='Logo'
-              onClick={gotoSearch}
+              onClick={() => gotoSearch(resetSearch)}
               style={{
                 height: '50px',
                 display: 'flex',
@@ -213,9 +166,7 @@ function Header() {
             }}
           >
             <span
-              onClick={
-                gotoHome
-              }
+              onClick={() => gotoHome(resetSearch)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -225,8 +176,6 @@ function Header() {
             >
               <IconButton
                 sx={{
-                  // fontSize: '1.75rem',
-                  // cursor: 'pointer',
                   display: 'flex',
                   flexDirection: 'column',
                   borderRadius: '16px',
@@ -261,7 +210,7 @@ function Header() {
               }}
             >
               <IconButton
-                onClick={gotoLibrary}
+                onClick={() => gotoLibrary(resetSearch)}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -294,7 +243,6 @@ function Header() {
         <IconButton
           onClick={() => alert('Not implemented 😛')}
           style={{
-            // marginLeft: '10px',
             backgroundColor: md3Colors.secondary,
             borderRadius: '16px',
             height: '50px',

@@ -7,7 +7,7 @@ import ListItemView from '../components/ListItemView';
 function SearchScreen({ query, resetSearch }) {
   const [songs, setSongs] = useState([])
   const containerRef = useRef(null)
-
+  
   useEffect(() => {
     if (!query) {
       setSongs([])
@@ -47,17 +47,15 @@ function SearchScreen({ query, resetSearch }) {
       {[0, 1, 2].map((row) => (
         <Grid
           container
-          spacing={2}
+          spacing={'1rem'}
           key={row}
           sx={{
             justifyContent: 'center',
             display: 'flex',
-            // height: '100vh',
             flexWrap: 'nowrap',
             margin: "auto",
-            mb: 2,
+            mb: '1rem',
             px: 3,
-            // pl: 2,
             width: 'max-content'
           }}
         >

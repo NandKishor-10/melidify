@@ -12,11 +12,15 @@ import { argbToHex, isDarkMode, md3Colors } from '../components/colors'
 import logoIcon from '../assets/logo_icon.png'
 import { popAnimation, floatAnimation } from '../components/Animation'
 import { LandingAbout, LandingHome, LandingContact } from '../components/LandingComp'
+import { useNavigate } from 'react-router-dom'
+import { pageStore } from '../components/utils'
 
 function LandingScreen() {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const audioRef = useRef(null)
+  const navigate = useNavigate()
+  const { currentPage, setCurrentPage } = pageStore()
   const [isPlaying, setIsPlaying] = useState(false)
   const [pop, setPop] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -27,6 +31,12 @@ function LandingScreen() {
     artist: 'Lata Mangeshkar',
     imageUri: 'https://t2.genius.com/unsafe/404x0/https%3A%2F%2Fimages.genius.com%2F6a58ad04fb6fe3d5feabb1ac3aecb52a.1000x1000x1.png',
     audioUri: 'https://aac.saavncdn.com/332/e6f43b2eff51f61d585b438c0e5c9baf_320.mp4'
+  }
+
+  const gotoSearch = () => {
+    setCurrentPage('search')
+    navigate('/search')
+    console.log('navigating to Search')
   }
 
   useEffect(() => {
@@ -116,7 +126,7 @@ function LandingScreen() {
               fontSize: note.fontSize,
               color: note.color,
               animation: `${floatAnimation} ${note.animationDuration} ${note.animationDelay} infinite linear`,
-              opacity: 0, 
+              opacity: 0,
               userSelect: 'none',
               pointerEvents: 'none',
             }}
@@ -208,6 +218,7 @@ function LandingScreen() {
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start' }}>
                 <Button
+                  onClick={gotoSearch}
                   variant='contained'
                   size='large'
                   sx={{
