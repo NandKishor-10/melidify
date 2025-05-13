@@ -1,5 +1,6 @@
 {
   "name": "melidify",
+  "homepage": "https://nandkishor-10.github.io/melidify/",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://saavn-api.vercel.app",
