@@ -13,7 +13,7 @@ import { pageStore } from './components/utils'
 
 function App() {
   const location = useLocation();
-  const isLandingPage = location.pathname === '/melidify';
+  const isLandingPage = location.pathname === '/';
   return (
     <div
       style={{

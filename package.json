@@ -1,6 +1,5 @@
 {
   "name": "melidify",
-  "homepage": "https://nandkishor-10.github.io/melidify/",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://saavn-api.vercel.app",
@@ -14,7 +13,6 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.3",
@@ -23,9 +21,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "tsc && vite build"
   },
   "eslintConfig": {
     "extends": [
